@@ -1,0 +1,22 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+.cn-search-box {
+  display: flex;
+  width: 220px;
+  justify-content: space-between;
+}
+.cn-search-box > input {
+  width: 72%;
+}
+
+.cn-search-box > .cn-search-box-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: #ff4747;
+  border-radius: 2px;
+}
