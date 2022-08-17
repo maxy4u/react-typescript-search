@@ -1,12 +1,21 @@
-import { FC, memo, MouseEventHandler, useCallback, useRef } from "react";
+import { FC, memo, KeyboardEventHandler, useCallback, useRef } from "react";
 import SvgSearch from "./icons/SvgSearch";
 
 export type SearchBoxProps = {
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  onClick: (v: string) => void;
 };
 
 const SearchBox: FC<SearchBoxProps> = memo(({ onClick: onSearch }) => {
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const onKeyPress: KeyboardEventHandler<HTMLInputElement> = useCallback(
+    (e: KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === "Enter" && inputRef?.current) {
+        debugger;
+        onSearch(inputRef.current.value);
+      }
+    },
+    [onSearch, inputRef]
+  );
   const onClick = useCallback(() => {
     if (inputRef?.current) {
       onSearch(inputRef.current.value);
@@ -16,7 +25,7 @@ const SearchBox: FC<SearchBoxProps> = memo(({ onClick: onSearch }) => {
 
   return (
     <div className="cn-search-box">
-      <input type="text" ref={inputRef} />
+      <input type="text" ref={inputRef} onKeyPress={onKeyPress} />
       <div className="cn-search-box-icon" {...{ onClick }}>
         <SvgSearch color="#FFFFFF" />
       </div>
