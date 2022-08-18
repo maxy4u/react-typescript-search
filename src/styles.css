@@ -4,14 +4,25 @@
 }
 .cn-search-box {
   display: flex;
-  width: 220px;
-  justify-content: space-between;
+  width: 400px;
+  justify-content: start;
 }
-.cn-search-box > input {
-  width: 72%;
+.cn-search-box input {
+  width: 60%;
+  height: 48px;
+  caret-color: #243c5a;
+  padding-right: 1rem;
+  transition: width 0.5s ease;
+  transition-delay: 0.1s;
 }
 
-.cn-search-box > .cn-search-box-icon {
+.cn-search-box input:focus {
+  outline: none;
+  width: 80%;
+  transition: width 0.5s ease;
+}
+
+.cn-search-box .cn-search-box-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -19,4 +30,25 @@
   height: 48px;
   background: #ff4747;
   border-radius: 2px;
+  margin-left: 1rem;
+}
+
+.deleteIconCont {
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+}
+
+.deleteIcon {
+  margin-left: -18px;
+  display: block;
+  height: 1rem;
+  width: 1rem;
+  cursor: pointer;
+  border-radius: 1rem;
+  background-color: rgb(156 163 175);
+  color: white;
+  text-align: center;
+  line-height: 0.75rem;
+  font-size: 12px;
 }

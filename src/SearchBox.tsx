@@ -4,7 +4,8 @@ import {
   KeyboardEventHandler,
   useCallback,
   useRef,
-  KeyboardEvent
+  KeyboardEvent,
+  MouseEventHandler
 } from "react";
 import SvgSearch from "./icons/SvgSearch";
 
@@ -30,11 +31,23 @@ const SearchBox: FC<SearchBoxProps> = memo(({ onClick: onSearch }) => {
     }
   }, [onSearch, inputRef]);
 
+  const onClear: MouseEventHandler<HTMLSpanElement> = useCallback(() => {
+    if (inputRef?.current) {
+      inputRef.current.value = "";
+      onSearch(inputRef.current.value);
+    }
+  }, [inputRef, onSearch]);
+
   return (
     <div className="cn-search-box">
-      <input type="text" ref={inputRef} onKeyPress={onKeyPress} />
-      <div className="cn-search-box-icon" {...{ onClick }}>
-        <SvgSearch color="#FFFFFF" />
+      <div className="deleteIconCont">
+        <input type="text" ref={inputRef} onKeyPress={onKeyPress} />
+        <span className="deleteIcon" onClick={onClear}>
+          x
+        </span>
+        <div className="cn-search-box-icon" {...{ onClick }}>
+          <SvgSearch color="#FFFFFF" />
+        </div>
       </div>
     </div>
   );
